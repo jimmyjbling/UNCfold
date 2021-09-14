@@ -72,14 +72,14 @@ cd ..
 echo "creating conda environments with python3.7 as ${UNCFOLDPATH}/uncfold-conda"
 . "${UNCFOLDPATH}/conda/etc/profile.d/conda.sh"
 export PATH="${UNCFOLDPATH}/conda/condabin:${PATH}"
-conda create -p "$UNCFOLDPATH"/colabfold-conda python=3.7 -y
-conda activate "$UNCFOLDPATH"/colabfold-conda
+conda create -p "$UNCFOLDPATH"/uncfold-conda python=3.7 -y
+conda activate "$UNCFOLDPATH"/uncfold-conda
 conda update -y conda
 
 echo "installing conda-forge packages"
 conda install -c conda-forge python=3.7 cudnn==8.2.1.32 cudatoolkit==11.1.1 openmm==7.5.1 pdbfixer -y
 echo "installing MSA binaries"
-conda install -c bioconda hmmer hhsuite kalign2
+conda install -c -y bioconda hmmer hhsuite kalign2
 echo "installing alphafold dependencies"
 pip install absl-py==0.13.0 biopython==1.79 chex==0.0.7 dm-haiku==0.0.4 dm-tree==0.1.6 immutabledict==2.0.0 jax==0.2.14 ml-collections==0.1.0 numpy==1.19.5 scipy==1.7.0 tensorflow-gpu==2.5.0
 pip install tqdm matplotlib py3dmol
