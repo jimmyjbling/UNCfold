@@ -2,6 +2,8 @@
 
 NOTE: Preliminary version 0.1, Currently testing for issues
 
+Current version require 14GB of memory for install
+
 Run alphafold on UNC longleaf cluster
 
 Implements both [ColabFold](https://github.com/sokrypton/ColabFold) and [Alphafold](https://github.com/deepmind/alphafold)
