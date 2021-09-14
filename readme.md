@@ -1,6 +1,6 @@
 # UNCfold
 
-NOTE: Not yet complete
+NOTE: Preliminary version 0.1, Currently testing for issues
 
 Run alphafold on UNC longleaf cluster
 
