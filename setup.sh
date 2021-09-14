@@ -7,7 +7,10 @@ rm -rf "${UNCFOLDPATH}"
 
 echo "downloading the alphafold as ${UNCFOLDPATH}..."
 git clone "https://github.com/deepmind/alphafold" "${UNCFOLDPATH}"
-(cd "${UNCFOLDPATH}" || exit; git checkout 1e216f93f06aa04aa699562f504db1d02c3b704c --quiet)
+(
+  cd "${UNCFOLDPATH}" || exit
+  git checkout 1e216f93f06aa04aa699562f504db1d02c3b704c --quiet
+)
 
 echo "downloading ColabFold.py"
 cd "${UNCFOLDPATH}" || exit
@@ -90,7 +93,7 @@ mv stereo_chemical_props.txt ${UNCFOLDPATH}/alphafold/common
 
 # Apply OpenMM patch.
 echo "applying OpenMM patch..."
-(cd ${UNCFOLDPATH}/uncfold-conda/lib/python3.7/site-packages/ && patch -p0 < ${UNCFOLDPATH}/docker/openmm.patch)
+(cd ${UNCFOLDPATH}/uncfold-conda/lib/python3.7/site-packages/ && patch -p0 <${UNCFOLDPATH}/docker/openmm.patch)
 
 # Enable GPU-accelerated relaxation.
 echo "enable GPU-accelerated relaxation..."
