@@ -56,10 +56,10 @@ wget -qnc https://raw.githubusercontent.com/YoshitakaMo/localcolabfold/main/gpur
 wget -qnc https://raw.githubusercontent.com/soedinglab/hh-suite/master/scripts/reformat.pl
 # Apply multi-chain patch from Lim Heo @huhlim
 cd "${UNCFOLDPATH}" || exit
-patch -u alphafold/common/protein.py -i protein.patch
-patch -u alphafold/model/model.py -i model.patch
-patch -u alphafold/model/modules.py -i modules.patch
-patch -u alphafold/model/config.py -i config.patch
+patch -u alphafold/common/protein.py -i ./patches/protein.patch
+patch -u alphafold/model/model.py -i ./patches/model.patch
+patch -u alphafold/model/modules.py -i ./patches/modules.patch
+patch -u alphafold/model/config.py -i ./patches/config.patch
 
 # Install Miniconda3 for Linux
 echo "installing Miniconda3 for Linux..."
