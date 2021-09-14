@@ -2,7 +2,7 @@
 
 NOTE: Preliminary version 0.1, Currently testing for issues
 
-Current version require 14GB of memory for install
+Current version require 14GB of memory for install: 7GB for miniconda and 4GB for model parameters
 
 Run alphafold on UNC longleaf cluster
 
