@@ -15,6 +15,12 @@ wget -qnc https://raw.githubusercontent.com/sokrypton/ColabFold/main/beta/colabf
 
 echo "downloading UNCfold scripts"
 cd "${UNCFOLDPATH}" || exit
+wget -qnc https://raw.githubusercontent.com/jimmyjbling/UNCfold/main/fold_mmseqs2.py
+wget -qnc https://raw.githubusercontent.com/jimmyjbling/UNCfold/main/uncfold.sh
+wget -qnc https://raw.githubusercontent.com/jimmyjbling/UNCfold/main/uncfold_jackhmmer.sh
+wget -qnc https://raw.githubusercontent.com/jimmyjbling/UNCfold/main/uncfold_mmseqs2.sh
+wget -qnc https://raw.githubusercontent.com/jimmyjbling/UNCfold/main/uncfold_jackhmmer_slurm.sh
+wget -qnc https://raw.githubusercontent.com/jimmyjbling/UNCfold/main/uncfold_mmseqs2_slurm.sh
 
 echo "making outputs file"
 cd "${UNCFOLDPATH}" || exit
