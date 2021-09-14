@@ -2,7 +2,7 @@
 sbatch <<EOT
 #!/bin/bash
 #SBATCH --job-name=uncfold
-#SBATCH -o "slurm_logs/$6"
+#SBATCH -o "slurm_logs/$6.out"
 #SBATCH -p volta-gpu
 #SBATCH -N 1
 #SBATCH -n 8

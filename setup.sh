@@ -28,6 +28,10 @@ if [ ! -d "$UNCFOLDPATH/outputs" ]; then
   mkdir "$UNCFOLDPATH/outputs"
 fi
 
+if [ ! -d "$UNCFOLDPATH/slurm_logs" ]; then
+  mkdir "$UNCFOLDPATH/slurm_logs"
+fi
+
 echo "downloading AF2 parameters"
 params_filename="alphafold_params_2021-07-14.tar"
 params="${UNCFOLDPATH}/params"
