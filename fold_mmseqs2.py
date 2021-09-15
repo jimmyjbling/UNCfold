@@ -107,12 +107,12 @@ def mk_template(a3m_lines, template_paths):
         mmcif_dir=template_paths,
         max_template_date=args.max_date,
         max_hits=20,
-        kalign_binary_path="/nas/longleaf/home/jwellni/miniconda3/envs/alphafold/bin/kalign",
+        kalign_binary_path=os.path.join(args.binaries, "kalign"),
         release_dates_path=None,
         obsolete_pdbs_path=None)
 
     hhsearch_pdb70_runner = hhsearch.HHSearch(
-        binary_path="/nas/longleaf/home/jwellni/miniconda3/envs/alphafold/bin/hhsearch",
+        binary_path=os.path.join(args.binaries, "hhsearch"),
         databases=[f"{template_paths}/pdb70"])
 
     hhsearch_result = hhsearch_pdb70_runner.query(a3m_lines)

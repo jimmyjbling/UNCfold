@@ -74,7 +74,7 @@ cd ..
 
 echo "creating conda environments with python3.7 as ${UNCFOLDPATH}/uncfold-conda"
 . "${UNCFOLDPATH}/conda/etc/profile.d/conda.sh"
-export PATH="${UNCFOLDPATH}/conda/condabin:${PATH}"
+export PATH="${UNCFOLDPATH}/conda/condabin:${. PATH}"
 conda create -p "$UNCFOLDPATH"/uncfold-conda python=3.7 -y
 conda activate "$UNCFOLDPATH"/uncfold-conda
 conda update -y conda
@@ -83,9 +83,9 @@ echo "installing conda-forge packages"
 conda install -c conda-forge python=3.7 cudnn==8.2.1.32 cudatoolkit==11.1.1 openmm==7.5.1 pdbfixer -y
 echo "installing MSA binaries"
 conda install -c bioconda hmmer hhsuite kalign2 -y
-echo "installing alphafold dependencies"
+echo "installing alphafold and colabfold dependencies"
 pip install absl-py==0.13.0 biopython==1.79 chex==0.0.7 dm-haiku==0.0.4 dm-tree==0.1.6 immutabledict==2.0.0 jax==0.2.14 ml-collections==0.1.0 numpy==1.19.5 scipy==1.7.0 tensorflow-gpu==2.5.0
-pip install tqdm matplotlib py3dmol
+pip install jupyter matplotlib py3Dmol tqdm
 pip install --upgrade jax jaxlib==0.1.69+cuda111 -f https://storage.googleapis.com/jax-releases/jax_releases.html
 
 wget -q https://git.scicore.unibas.ch/schwede/openstructure/-/raw/7102c63615b64735c4941278d92b554ec94415f8/modules/mol/alg/src/stereo_chemical_props.txt
