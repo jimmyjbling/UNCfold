@@ -16,5 +16,5 @@ module load cuda/11.2
 # change me to full_dbs for full database search or casp14 for full search with 8 ensembles
 PRESET="reduced_dbs"
 
-bash uncfold_jackhmmer.sh "-d $5 -o $(pwd)/outputs -m model_1,model_2,model_3,model_4,model_5 -f $1 -t $4 -y $(pwd)/uncfold-conda/bin/python3.7 -p $PRESET"
+bash uncfold_jackhmmer.sh -d $5 -o $(pwd)/outputs -m model_1,model_2,model_3,model_4,model_5 -f $1 -t $4 -y $(pwd)/uncfold-conda/bin/python3.7 -p $PRESET
 EOT

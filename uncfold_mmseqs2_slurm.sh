@@ -13,5 +13,5 @@ sbatch <<EOT
 
 module load cuda/11.2
 
-bash uncfold_mmseqs2.sh "-d $(pwd)/params -o $(pwd)/outputs -f $1 -t $4 -m $3 -e 1 -a $2 -p $(pwd)/uncfold-conda/bin/python3.7"
+bash uncfold_mmseqs2.sh -d $(pwd)/params -o $(pwd)/outputs -f $1 -t $4 -m $3 -e 1 -a $2 -p $(pwd)/uncfold-conda/bin/python3.7
 EOT
