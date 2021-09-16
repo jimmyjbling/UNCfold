@@ -88,7 +88,7 @@ if [[ "$preset" != "full_dbs" && "$preset" != "casp14" && "$preset" != "reduced_
     preset="full_dbs"
 fi
 
-jobname=$(basemane $fasta_path)
+jobname=$(basename $fasta_path)
 
 if [ ! -d "$output_dir/$jobname" ]; then
   mkdir "$output_dir/$jobname"

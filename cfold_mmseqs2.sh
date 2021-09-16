@@ -68,7 +68,7 @@ if [[ "$max_template_date" == "" ]] ; then
     max_template_date="2100-01-01"
 fi
 
-jobname=$(basemane $fasta_path)
+jobname=$(basename $fasta_path)
 
 if [ ! -d "$output_dir/$jobname" ]; then
   mkdir "$output_dir/$jobname"
