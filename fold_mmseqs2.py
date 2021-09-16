@@ -5,11 +5,6 @@ import time
 import sys
 import os
 import warnings
-import requests
-import tarfile
-import random
-import jax
-import hashlib
 
 import tensorflow as tf
 import numpy as np
