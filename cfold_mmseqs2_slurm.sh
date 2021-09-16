@@ -1,7 +1,7 @@
 #!/bin/bash
 sbatch <<EOT
 #!/bin/bash
-#SBATCH --job-name=uncfold
+#SBATCH --job-name=cfold
 #SBATCH -o "./slurm_logs/$5.out"
 #SBATCH -p volta-gpu
 #SBATCH -N 1
@@ -13,5 +13,5 @@ sbatch <<EOT
 
 module load cuda/11.2
 
-bash uncfold_mmseqs2.sh -d $(pwd) -o $(pwd)/outputs -f $1 -t $4 -m $3 -e 1 -a $2 -p $(pwd)/uncfold-conda/bin/python3.7
+bash cfold_mmseqs2.sh -d $(pwd) -o $(pwd)/outputs -f $1 -t $4 -m $3 -e 1 -a $2 -p $(pwd)/cfold-conda/bin/python3.7
 EOT

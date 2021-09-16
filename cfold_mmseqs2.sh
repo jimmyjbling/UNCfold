@@ -94,5 +94,5 @@ export TF_FORCE_UNIFIED_MEMORY='1'
 export XLA_PYTHON_CLIENT_MEM_FRACTION='4.0'
 
 # Run AlphaFold with required parameters
-$(./uncfold-conda/bin/python3.7 ./fold_mmseqs2.py -d $param_dir -f $fasta_path -o $result_dir -m $max_template_date -a $amber -e $ensemble -t $mode -b ./uncfold-conda/bin)
+./cfold-conda/bin/python3.7 ./fold_mmseqs2.py -d $param_dir -f $fasta_path -o $result_dir -m $max_template_date -a $amber -e $ensemble -t $mode -b ./cfold-conda/bin
 

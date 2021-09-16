@@ -68,17 +68,17 @@ else
 fi
 
 if [[ "$DATADIR" == "" && "$1" == "jackhmmer" ]] ; then
-    echo "Error: jackhmmer alphafold dataset directory not set. Edit line 20 of uncfold.sh to path to data directory"
+    echo "Error: jackhmmer alphafold dataset directory not set. Edit line 20 of cfold.sh to path to data directory"
     exit 1
 fi
 
 if  [[ "$1" == "mmseqs2" ]] ; then
-    sbatch $CURRENTPATH/uncfold_mmseqs2_slurm.sh -f $2 $AMBER $TEMPLATE $MAX_TEMPLATE_DATE $JOBNAME
+    sbatch $CURRENTPATH/cfold_mmseqs2_slurm.sh -f $2 $AMBER $TEMPLATE $MAX_TEMPLATE_DATE $JOBNAME
     exit 0
 fi
 
 if [[ "$1" == "jackhmmer" ]] ; then
-    sbatch $CURRENTPATH/uncfold_jackhmmer_slurm.sh -f $2 $AMBER $TEMPLATE $MAX_TEMPLATE_DATE $DATADIR $JOBNAME
+    sbatch $CURRENTPATH/cfold_jackhmmer_slurm.sh -f $2 $AMBER $TEMPLATE $MAX_TEMPLATE_DATE $DATADIR $JOBNAME
     exit 0
 fi
 

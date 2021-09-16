@@ -22,7 +22,7 @@ This will install alphafold, set up a miniconda python distribution with proper 
 To use cfold, go to the cfold directory and run cfold.sh:
 
 <pre>
-bash cfold.sh [msa_mode] [fasta_path] -a -t -d=<date>
+bash cfold.sh [msa_mode] [fasta_path] -a -t -d=(date)
 </pre>
 
 Usage: [msa_mode] [fasta_path] -a -t -d=<date>  
@@ -32,7 +32,7 @@ fasta_path:                        path to input sequence file in fasta format
 optional arguments  
 -a | --amber_relax                 use amber relaxation (slow)  
 -t | --template                    use templates  
--d | --max_template_date: <date>   date for template use cutoff in format YYYY-MM-DD (used only if the structure you are trying to predict exisits already)  
+-d | --max_template_date: (date)   date for template use cutoff in format YYYY-MM-DD (used only if the structure you are trying to predict exisits already)  
 
 For example, I want to predict unknown_protien.fasta and I want to do it fast (so using the colabfold approach with mmseqs2). Since it hasn;t been sovled before I also was to use templates. I would run
   
