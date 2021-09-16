@@ -1,7 +1,7 @@
-# UNCfold
+# ClusterFold
 -----------------
 
-UNCfold is a collection of shell/python scripts that allow you to quickly install and run Deepmind's [Alphafold](https://github.com/deepmind/alphafold) model on the UNClongleaf cluster (although any slurm managed cluster should also be able to work with this script).
+ClusterFold (cfold) is a collection of shell/python scripts that allow you to quickly install and run Deepmind's [Alphafold](https://github.com/deepmind/alphafold) model on the UNC longleaf cluster (although any slurm managed cluster should also be able to work with this script).
 
 Normally, the orginal alphafold setup can take a long time to run for medium sized protiens (500-700 residues). Thanks to the work done by the team behind [ColabFold](https://github.com/sokrypton/ColabFold), some ways to speed up alphafold can be implemnted to make runs faster. This collection implements both versions, the full orginal alphafold and alphafold with some of the tricks from colabfold. The difference between these two versions can be seen below:
 
@@ -11,18 +11,18 @@ Normally, the orginal alphafold setup can take a long time to run for medium siz
 | Colabfold | 4 GB model params | [mmseqs2](https://github.com/soedinglab/MMseqs2) | 5 | 1 | optional | fast
 -----------------
 
-To install uncfold, go into your home directory and collected the setup.sh file using:
+To install cfold, go into your home directory and collected the setup.sh file using:
 <pre>
-wget https://raw.githubusercontent.com/jimmyjbling/UNCfold/main/setup.sh
+wget https://raw.githubusercontent.com/jimmyjbling/ClusterFold/main/setup.sh
 </pre>
 
-This will install alphafold, set up a miniconda python distribution with proper dempedencies installed, the model parameters and the scripts needed to run both versions described above in a new directory called uncfold in the directory that setup.sh was run from. NOTE: Current version require 14GB of memory for install: 7GB for miniconda and 4GB for model parameters. If you lack the storage space, you can install paramters onto the scrach directory or tweak the miniconda install. Email me: jwellnitz@unc.edu with questions.
+This will install alphafold, set up a miniconda python distribution with proper dempedencies installed, the model parameters and the scripts needed to run both versions described above in a new directory called cfold in the directory that setup.sh was run from. NOTE: Current version require 14GB of memory for install: 7GB for miniconda and 4GB for model parameters. If you lack the storage space, you can install paramters onto the scrach directory or tweak the miniconda install. Email me: jwellnitz@unc.edu with questions.
 
 -----------------
-To use uncfold, go to the unfold directory and run uncfold.sh:
+To use cfold, go to the cfold directory and run cfold.sh:
 
 <pre>
-bash uncfold.sh [msa_mode] [fasta_path] -a -t -d=<date>
+bash cfold.sh [msa_mode] [fasta_path] -a -t -d=<date>
 </pre>
 
 Usage: [msa_mode] [fasta_path] -a -t -d=<date>  
@@ -37,7 +37,7 @@ optional arguments
 For example, I want to predict unknown_protien.fasta and I want to do it fast (so using the colabfold approach with mmseqs2). Since it hasn;t been sovled before I also was to use templates. I would run
   
 <pre>
-bash uncfold.sh mmseqs2 path/to/unknown_protien.fasta -t
+bash cfold.sh mmseqs2 path/to/unknown_protien.fasta -t
 </pre>
 
 Please cite
