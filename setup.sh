@@ -12,13 +12,10 @@ git clone "https://github.com/deepmind/alphafold" "${CFOLDPATH}"
   git checkout 1e216f93f06aa04aa699562f504db1d02c3b704c --quiet
 )
 
-echo "downloading ColabFold.py"
-cd "${CFOLDPATH}" || exit
-wget -qnc https://raw.githubusercontent.com/sokrypton/ColabFold/main/beta/colabfold.py
-
 echo "downloading ClusterFold scripts"
 cd "${CFOLDPATH}" || exit
 wget -qnc https://raw.githubusercontent.com/jimmyjbling/ClusterFold/main/fold_mmseqs2.py
+wget -qnc https://raw.githubusercontent.com/jimmyjbling/ClusterFold/main/mmseqs2.py
 wget -qnc https://raw.githubusercontent.com/jimmyjbling/ClusterFold/main/cfold.sh
 wget -qnc https://raw.githubusercontent.com/jimmyjbling/ClusterFold/main/cfold_jackhmmer.sh
 wget -qnc https://raw.githubusercontent.com/jimmyjbling/ClusterFold/main/cfold_mmseqs2.sh
