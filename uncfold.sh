@@ -73,12 +73,12 @@ if [[ "$DATADIR" == "" && "$1" == "jackhmmer" ]] ; then
 fi
 
 if  [[ "$1" == "mmseqs2" ]] ; then
-    sbatch "$CURRENTPATH/uncfold_mmseqs2_slurm.sh -f $2 $AMBER $TEMPLATE $MAX_TEMPLATE_DATE $JOBNAME"
+    sbatch $CURRENTPATH/uncfold_mmseqs2_slurm.sh -f $2 $AMBER $TEMPLATE $MAX_TEMPLATE_DATE $JOBNAME
     exit 0
 fi
 
 if [[ "$1" == "jackhmmer" ]] ; then
-    sbatch "$CURRENTPATH/uncfold_jackhmmer_slurm.sh -f $2 $AMBER $TEMPLATE $MAX_TEMPLATE_DATE $DATADIR $JOBNAM"
+    sbatch $CURRENTPATH/uncfold_jackhmmer_slurm.sh -f $2 $AMBER $TEMPLATE $MAX_TEMPLATE_DATE $DATADIR $JOBNAME
     exit 0
 fi
 

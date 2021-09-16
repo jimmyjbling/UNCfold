@@ -27,16 +27,29 @@ t0 = time.time()
 device = "gpu"
 
 ########## PARSE ARGS ###############################
+
+
+def str2bool(v):
+    if isinstance(v, bool):
+        return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
+
 parser = argparse.ArgumentParser(description="No")
 
 parser.add_argument('-f', '--fasta', type=str, metavar='', help='fasta file location')
 
 parser.add_argument('-e', '--num_ensemble', default=1, type=int, metavar='', help='how many ensemble to use (1 or 8')
-parser.add_argument('-a', '--amber', default=False, type=bool, metavar='', help='do you want to AMBER reduce')
+parser.add_argument('-a', '--amber', default=False, type=str2bool, metavar='', help='do you want to AMBER reduce')
 parser.add_argument('-d', '--data_dir', default=None, type=str, metavar='', help='path to where data is stored')
 parser.add_argument('-o', '--output_dir', default=None, type=str, metavar='', help='path for outputs')
 parser.add_argument('-m', '--max_date', default="2100-01-01", type=str, metavar='', help='max date for templates')
-parser.add_argument('-t', '--template', default=True, type=bool, metavar='', help='do you want to use templates')
+parser.add_argument('-t', '--template', default=True, type=str2bool, metavar='', help='do you want to use templates')
 parser.add_argument('-b', '--binaries', default=None, type=str, metavar='',
                     help='path to folder holding kalign and hmmrsearch binaries')
 
@@ -68,6 +81,7 @@ if args.output_dir is None:
     os.makedirs(output_dir, exist_ok=True)
 else:
     output_dir = args.output_dir
+    os.makedirs(output_dir, exist_ok=True)
 
 print("output dir located at: ", output_dir)
 
@@ -137,7 +151,7 @@ def set_bfactor(pdb_filename, bfac, idx_res, chains):
 
 def predict_structure(prefix, feature_dict, Ls, model_params, use_model, do_relax=False, random_seed=0):
     """Predicts structure using AlphaFold for the given sequence."""
-
+    print("predicting structure models")
     # Minkyung's code
     # add big enough number to residue index to indicate chain breaks
     idx_res = feature_dict['residue_index']
@@ -153,8 +167,6 @@ def predict_structure(prefix, feature_dict, Ls, model_params, use_model, do_rela
     plddts, paes = [], []
     unrelaxed_pdb_lines = []
     relaxed_pdb_lines = []
-
-    print(do_relax)
 
     for model_name, params in model_params.items():
         t1 = time.time()
@@ -194,12 +206,14 @@ def predict_structure(prefix, feature_dict, Ls, model_params, use_model, do_rela
         with open(unrelaxed_pdb_path, 'w') as f:
             f.write(unrelaxed_pdb_lines[r])
         set_bfactor(unrelaxed_pdb_path, plddts[r], idx_res, chains)
-
+        with open(os.path.join(output_dir, "model_stats.txt"), 'a') as f:
+            f.write(f"{prefix.split('/')[-1]}_unrelaxed_model_{n + 1} plddt: {np.mean(plddts[r])} paes: {np.mean(paes[r])}\n")
         if do_relax:
             relaxed_pdb_path = f'{prefix}_relaxed_model_{n + 1}.pdb'
             with open(relaxed_pdb_path, 'w') as f: f.write(relaxed_pdb_lines[r])
             set_bfactor(relaxed_pdb_path, plddts[r], idx_res, chains)
-
+            with open(os.path.join(output_dir, "model_stats.txt"), "a") as f:
+                f.write(f"{prefix.split('/')[-1]}_relaxed_model_{n + 1} plddt: {np.mean(plddts[r])} paes: {np.mean(paes[r])}\n")
         out[f"model_{n + 1}"] = {"plddt": plddts[r], "pae": paes[r]}
     return out
 
@@ -244,11 +258,9 @@ feature_dict = {
     **pipeline.make_msa_features(msas=msas, deletion_matrices=deletion_matrices),
     **template_features
 }
-outs = predict_structure(os.path.join(output_dir, jobname), feature_dict,
+outs = predict_structure(output_dir, feature_dict,
                          Ls=[len(sequence)],
                          model_params=model_params, use_model=use_model,
                          do_relax=args.amber)
 
 print("Total time", time.time() - t0)
-
-
