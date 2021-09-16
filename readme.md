@@ -38,7 +38,21 @@ For example, I want to predict unknown_protien.fasta and I want to do it fast (s
   
 <pre>
 bash cfold.sh mmseqs2 path/to/unknown_protien.fasta -t
+</pre>  
+-----------------
+Now I might want to run the protien unknown protien with the full version of alphafold, as it might be slightly better. I would run the following.
+Note in this case the -a or -t isn't required, as the jackhmmer mode will always amber relax and use templates, but you can include them it won't change anything (see table above)
+<pre>
+bash cfold.sh jackhmmer path/to/unknown_protien.fasta -a -t
 </pre>
+-----------------
+If I wanted to run a already known protien 6y4f (maybe to see for myself how good alphafold's predictions are) I would want to aviod using templates. But I want to amber relax so I run
+  
+<pre>
+bash cfold.sh mmseqs2 path/to/6y4f.fasta -a
+</pre>  
+  
+ (maybe to see for myself how good alphafold's predictions are) I would want to aviod using templates. But I want to amber relax so I run
 
 Please cite
 
