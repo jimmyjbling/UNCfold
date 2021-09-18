@@ -11,6 +11,30 @@ Normally, the orginal alphafold setup can take a long time to run for medium siz
 | Colabfold | 4 GB model params | [mmseqs2](https://github.com/soedinglab/MMseqs2) | 5 | 1 | optional | fast
 -----------------
 
+One might be curious to see how the preformace between these to differ, so I rand some benchmarking with 9 random pdb file of residue lentgh between 200-300.
+  
+First, in runtime, the results showed there was a signficant difference between the two average runtime (p value of 9.512e-06) with the average for the colabfold appraoch taking 10 minutes and 17 seconds while the alphafold approach averaged 28 minutes and 11 seconds
+  
+In terms of prediction quaility, the average RMSD alignment between the prediction for each method was 0.5164 A. However one of the structure was a major oulier (5x0f at 2.139 A). Without that outlier the average RMSD was 0.3137 A
+  
+Lastly I compared each prediction to the real structure. The p value for the difference between the two approached not being zero was 0.3476 and for the colabfold method having better alignment scores better it was 0.1738. Overall there is no evidence to sugest one is better than the other in prediction quality
+
+| PDB | Alphafold | Colabfold 
+| :-------- | -------  | --------- |
+| 3yn4 | 0.304867804050446 | 0.327671110630035
+| 3nzc | 0.420691251754761 | 0.444653451442719
+| 4ttq | 1.08367002010345 | 0.894327521324158
+| 4u4h | 0.716829061508179 | 0.690542876720428
+| 4u6a | 10.7000427246094 | 10.7304716110229
+| 4w6e | 0.481924712657928 | 0.566877663135529
+| 4wca | 0.383367419242859 | 0.393314033746719
+| 4wda | 0.455938071012497 | 0.48809888958931
+| 5x0f | 2.15102958679199 | 0.548271477222443
+  
+Take note that alphafold failed to fold 4u6a correct to any level. It is a good reminder to take caution and that alphafold is still just making predtions, and that those predictions can be very wrong.
+
+-----------------
+
 To install cfold, go into your home directory and collected the setup.sh file using:
 <pre>
 wget https://raw.githubusercontent.com/jimmyjbling/ClusterFold/main/setup.sh
